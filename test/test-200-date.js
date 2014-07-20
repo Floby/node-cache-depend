@@ -33,5 +33,13 @@ describe('a DateTime watcher instance', function () {
     expect(actual).to.be.an.instanceof(Date)
     expect(+actual).to.equal(+(new Date(limit)))
   })
+
+  describe('When reaching the limit datetime', function () {
+    it('should emit a "change" event', function (done) {
+      var limit = new Date(Date.now() + 100)
+      var d = DateTime(limit)
+      d.on('change', done)
+    })
+  })
 })
 
