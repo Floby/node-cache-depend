@@ -8,6 +8,8 @@ describe('The cache-depend module', function () {
   it('should be a function', function () {
     var cacheDepend = require('../')
     expect(cacheDepend).to.be.a('function')
+    // test it is noop
+    cacheDepend();
   })
 
   describe('has methods such as', function () {
