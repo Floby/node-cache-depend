@@ -6,13 +6,13 @@ var DateTime = require('..').date
 
 describe('the DateTime function', function () {
   it('should be a constructor', function () {
-    var depends = new DateTime()
+    var depends = new DateTime(new Date())
     expect(depends).to.be.an('object')
     expect(depends.constructor).to.equal(DateTime)
   })
 
   it('should be a constructor even without new', function () {
-    var depends = DateTime()
+    var depends = DateTime(new Date());
     expect(depends).to.be.an('object')
     expect(depends.constructor).to.equal(DateTime)
   })
