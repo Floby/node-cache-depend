@@ -1,0 +1,35 @@
+{
+  "name": "cache-depend",
+  "version": "0.0.0",
+  "description": "A utility function to detect when you should invalidate your cached data",
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "scripts": {
+    "test": "istanbul cover _mocha test && istanbul check --branches 90 --statements 95 --lines 100 --functions 100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Floby/node-cache-depend.git"
+  },
+  "keywords": [
+    "cache",
+    "dependency",
+    "invalidation",
+    "invalidate",
+    "caching",
+    "ka-ching",
+    "etag"
+  ],
+  "devDependencies": {
+    "istanbul": "~0.2.4",
+    "trycatch": "~1.0.6",
+    "chai": "~1.9.0",
+    "mocha": "~1.17.1",
+    "nock": "^0.27.2"
+  }
+  "author": "Florent Jaby <florent.jaby@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
