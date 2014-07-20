@@ -1,18 +1,19 @@
 var expect = require('chai').expect
 
-var date = require('..').date
+var others = require('..').others
 
-describe('the DateTime watcher', function () {
+describe('the Others watcher', function () {
   it('should be a constructor', function () {
-    var depends = new date()
+    var depends = new others()
     expect(depends).to.be.an('object')
-    expect(depends.constructor).to.equal(date)
+    expect(depends.constructor).to.equal(others)
   })
 
   it('should be a constructor even without new', function () {
-    var depends = date()
+    var depends = others()
     expect(depends).to.be.an('object')
-    expect(depends.constructor).to.equal(date)
+    expect(depends.constructor).to.equal(others)
   })
 })
+
 
