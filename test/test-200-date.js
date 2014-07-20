@@ -42,6 +42,16 @@ describe('a DateTime watcher instance', function () {
       d.on('change', function () { done() })
     })
 
+    it('should mark its invalid flag to true', function (done) {
+      var limit = new Date(Date.now() + 10)
+      var d = DateTime(limit)
+      expect(d.invalid).to.be.false
+      d.on('change', function () {
+        expect(d.invalid).to.be.true
+        done()
+      })
+    })
+
     it('should provide a changeinfo object', function (done) {
       var limit = new Date(Date.now() + 10)
       var d = DateTime(limit)
