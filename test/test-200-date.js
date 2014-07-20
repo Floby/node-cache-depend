@@ -82,31 +82,50 @@ describe('a DateTime watcher instance', function () {
       expect(changeinfo).to.have.property('endedAt')
       expect(+changeinfo.endedAt).to.equal(+limit)
     })
-
-
   })
 
   describe('interacting with setTimeout', function () {
     var oldTo = setTimeout
-    var mock
+    var oldCto = clearTimeout
+    var set, clear
     beforeEach(function () {
-      mock = null
+      set = null
       global.setTimeout = function () {
-        return mock.apply(this, arguments)
+        return set.apply(this, arguments)
+      }
+      global.clearTimeout = function () {
+        return clear.apply(this, arguments)
       }
     })
     afterEach(function () {
       global.setTimeout = oldTo
+      global.clearTimeout = oldCto
     })
 
     it('should call it with the appropriate delay', function (done) {
       var expected = 4789
       var limit = Date.now() + expected
-      mock = function (fun, actual) {
+      set = function (fun, actual) {
         expect(actual).to.equal(expected)
         done()
       }
       var d = DateTime(limit)
+    })
+
+    it('should clear the timeout when cancelling', function () {
+      var limit = Date.now() + 20000
+      var ref = {};
+      set = function (fun, actual) {
+        return ref
+      }
+      var d = DateTime(limit)
+
+      clear = function (reference) {
+        expect(reference).to.equal(ref)
+      }
+      
+      d.cancel()
+
     })
   })
 })
