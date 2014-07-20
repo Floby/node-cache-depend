@@ -17,25 +17,34 @@ CacheDepend can help you formalize on what sources you depend for you cached dat
 and notify you when your data needs to be updated
 
 ```javascript
-var depends = require('cache-depend')
+var onETag = require('cache-depend')
                .etag('http://example.com/resource/with/ETag')
 
-depends.on('change', function (changeinfo) {
+onETag.on('change', function (changeinfo) {
   changeinfo.changeId
   changeinfo.oldETag
   changeinfo.newETag
   // I should probably invalidate my cached data
 })
 
-var depends = require('cache-depend')
-               .time('2015-06-23 12:36:00')
+var onDate = require('cache-depend')
+               .date('2015-06-23 12:36:00')
 
-depends.on('change', function (changeinfo) {
+onDate.on('change', function (changeinfo) {
   changeinfo.changeId
   changeinfo.startedAt
   changeinfo.endedAt
   // Same here
 })
+
+var onOthers = require('cache-depend')
+                .others(onEtag, onDate) // any number of arguments
+
+onOthers.on('change', function (changeinfo) {
+  changeinfo.changeId // is the same as the one emitted by the first to change
+  changeinfo.changed // reference to the changing dependency
+})
+
 ```
 
 Test
