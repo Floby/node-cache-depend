@@ -1,13 +1,13 @@
 var trycatch = require('trycatch');
 
 exports.tcit = function try_catch_it(desc, test) {
-  if(!test) return it(desc, null);
+  if(!test) return it.call(this, desc, null);
   if(test.length === 0) {
-    return it(desc, test);
+    return it.call(this, desc, test);
   }
-  if (!test) return it(desc);
+  if (!test) return it.call(this, desc);
   it(desc, function (done) {
-    trycatch(test.bind(null, done), done);
+    trycatch(test.bind(this, done), done);
   });
 }
 

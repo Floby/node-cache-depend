@@ -31,5 +31,8 @@
   },
   "author": "Florent Jaby <florent.jaby@gmail.com>",
   "license": "MIT",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "request": "^2.38.0"
+  }
 }
