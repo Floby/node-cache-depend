@@ -74,7 +74,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [travis-image]: http://img.shields.io/travis/Floby/node-cache-depend/master.svg?style=flat
 [travis-url]: https://travis-ci.org/Floby/node-cache-depend
-[coveralls-image]: http://img.shields.io/coveralls/Floby/node-cache-depend.svg?style=flat
+[coveralls-image]: http://img.shields.io/coveralls/Floby/node-cache-depend/master.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/Floby/node-cache-depend
 
 
