@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Floby/node-cache-depend.png?branch=master)](https://travis-ci.org/Floby/node-cache-depend) [![Coverage][coveralls-image]][coveralls-url]
+[![Build Status][travis-image]][travis-url] [![Coverage][coveralls-image]][coveralls-url]
 
 node-cache-depend
 ==================
@@ -72,6 +72,8 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+[travis-image]: http://img.shields.io/travis/Floby/node-cache-depend/master.svg?style=flat
+[travis-url]: https://travis-ci.org/Floby/node-cache-depend
 [coveralls-image]: http://img.shields.io/coveralls/Floby/node-cache-depend.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/Floby/node-cache-depend
 
