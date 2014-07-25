@@ -26,6 +26,10 @@ describe('The cache-depend module', function () {
       expect(CacheDepend).to.have.property('others');
       expect(CacheDepend.others).to.be.a('function');
     })
+    it('manual', function () {
+      expect(CacheDepend).to.have.property('manual');
+      expect(CacheDepend.manual).to.be.a('function');
+    })
   })
 
 })
