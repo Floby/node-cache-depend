@@ -36,17 +36,35 @@ describe('the Others watcher', function () {
     manuals[5].invalidate('888');
   });
 
-  it('should not realy a second change event', function () {
+  it('should not relay a second change event', function () {
     var manuals = [1,2,3].map(manual);
     var depends = others(manuals);
     manuals[0].invalidate('id');
     expect(function () {
-      depends.once('change', function () {
+      depends.on('change', function () {
         throw new Error('change event');
       })
-      manuals[2].invalidate();
+      manuals[2].invalidate('8');
     }).not.to.throw('change event')
 
+  });
+
+  it('should cancel all other depdencies when one changes', function () {
+    var manuals = [1,2,3].map(manual);
+    var depends = others(manuals);
+    var called = [];
+    manuals.forEach(function (m) {
+      var _cancel = m.cancel;
+      m.cancel = function () {
+        called.push(m);
+        _cancel.call(m);
+      }
+    })
+
+    manuals[1].invalidate('a');
+    expect(called).to.have.length(2);
+    expect(called[0]).to.equal(manuals[0]);
+    expect(called[1]).to.equal(manuals[2]);
   });
 })
 
