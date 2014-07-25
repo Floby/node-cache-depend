@@ -154,10 +154,12 @@ describe('the ETag watcher', function () {
               
     var depends = etag('http://some.url/resource', '888', {interval: 10000});
 
-    depends.check()
+    depends.check(function (isGood) {
+      expect(isGood).to.equal(false, 'Check should receive false');
+      done();
+    })
     depends.on('change', function (info) {
       scope.done();
-      done();
     });
   });
 })
