@@ -44,7 +44,7 @@ describe('the Others watcher', function () {
       depends.on('change', function () {
         throw new Error('change event');
       })
-      manuals[2].invalidate('8');
+      manuals[2].emit('change');
     }).not.to.throw('change event')
 
   });
