@@ -125,9 +125,26 @@ describe('the ETag watcher', function () {
         myDone();
       })
     }, myDone);
-  })
+  });
 
-  // 'change'
+  it('should stop polling when calling cancel()', function (done) {
+    var scope = nock('http://some.url')
+                .head('/resource')
+                .reply(200, '', {ETag: '888'})
+                .head('/resource')
+                .reply(200, '', {ETag: '999'})
+    // here, the change event shouldn't be fired because we cancel it before the Etag changes
+
+    var depends = etag('http://some.url/resource', '888', {interval: 20});
+    setTimeout(function () {
+      depends.cancel();
+    }, 10)
+    depends.on('change', function () {
+      throw new Error('There should be no event "change"')
+    })
+    setTimeout(done, 30);
+  });
+
   // check(cb)
   // cancel()
 })
