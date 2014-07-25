@@ -145,6 +145,19 @@ describe('the ETag watcher', function () {
     setTimeout(done, 30);
   });
 
-  // check(cb)
-  // cancel()
+  it('should make an immediate request when call check()', function (done) {
+    var scope = nock('http://some.url')
+                .head('/resource')
+                .reply(200, '', {ETag: '888'})
+                .head('/resource')
+                .reply(200, '', {ETag: '999'})
+              
+    var depends = etag('http://some.url/resource', '888', {interval: 10000});
+
+    depends.check()
+    depends.on('change', function (info) {
+      scope.done();
+      done();
+    });
+  });
 })
