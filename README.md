@@ -50,7 +50,7 @@ onOthers.on('change', function (changeinfo) {
 Test
 ----
 
-You can run the tests with `npm test`. You will need to know [mocha](https://github.com/visionmedia/mocha)
+You can run the tests with `npm test`. You will need to know [mocha][mocha-url]
 
 Contributing
 ------------
@@ -76,5 +76,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [travis-url]: https://travis-ci.org/Floby/node-cache-depend
 [coveralls-image]: http://img.shields.io/coveralls/Floby/node-cache-depend/master.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/Floby/node-cache-depend
+[mocha-url]: https://github.com/visionmedia/mocha
 
 
