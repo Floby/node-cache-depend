@@ -56,6 +56,28 @@ describe('the Manual watcher', function () {
     }).not.to.throw(/change called/i)
     done();
   })
+
+  describe('.check()', function () {
+    describe('called before invalidating', function () {
+      it('called the callback with true', function (done) {
+        var m = manual();
+        m.check(function (isGood) {
+          expect(isGood).to.equal(true)
+          done();
+        })
+      })
+    })
+    describe('called after invalidating', function () {
+      it('called the callback with true', function (done) {
+        var m = manual();
+        m.invalidate(8);
+        m.check(function (isGood) {
+          expect(isGood).to.equal(false)
+          done();
+        })
+      })
+    })
+  })
 })
 
 
