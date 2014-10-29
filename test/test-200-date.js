@@ -138,5 +138,36 @@ describe('a DateTime watcher instance', function () {
 
     })
   })
+
+  describe('.check(cb)', function () {
+    describe('called before the due date', function () {
+      it('should call its callback with true', function (done) {
+        var limit = Date.now() + 100;
+        var d = DateTime(limit);
+        var called = false;
+        d.check(function (isGood) {
+          expect(isGood).to.equal(true);
+          called = true;
+        })
+        d.on('change', function () {
+          expect(called).to.be.true;
+          done();
+        })
+      });
+    });
+
+    describe('called after the due date', function () {
+      it('should call its callback with false', function (done) {
+        var limit = Date.now() + 100;
+        var d = DateTime(limit);
+        d.on('change', function () {
+          d.check(function (isGood) {
+            expect(isGood).to.be.false;
+            done();
+          })
+        })
+      });
+    });
+  });
 })
 

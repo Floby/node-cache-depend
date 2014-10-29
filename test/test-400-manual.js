@@ -56,7 +56,6 @@ describe('the Manual watcher', function () {
     }).not.to.throw(/change called/i)
     done();
   })
-
 })
 
 
