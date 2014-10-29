@@ -1,6 +1,6 @@
 {
   "name": "cache-depend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A utility function to detect when you should invalidate your cached data",
   "main": "index.js",
   "engines": {
