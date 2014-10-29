@@ -1,3 +1,4 @@
+var sinon = require('sinon');
 var expect = require('chai').expect
 
 var others = require('..').others
@@ -65,6 +66,22 @@ describe('the Others watcher', function () {
     expect(called).to.have.length(2);
     expect(called[0]).to.equal(manuals[0]);
     expect(called[1]).to.equal(manuals[2]);
+  });
+
+  describe('.check()', function () {
+    it('should relay the check call to its children', function (done) {
+      var manuals = [1,2,3].map(manual)
+      manuals.forEach(function (m) {
+        m.check = sinon.spy(function (cb) { cb(true) });
+      });
+      var depends = others(manuals);
+      depends.check(function (isGood) {
+        manuals.forEach(function (m) {
+          expect(m.check.called).to.be.true;
+        })
+        done();
+      });
+    });
   });
 })
 
