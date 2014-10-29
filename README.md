@@ -47,6 +47,18 @@ onOthers.on('change', function (changeinfo) {
 
 ```
 
+
+You can also manually check your watchers
+
+```javascript
+var onOthers = require('cache-depend')
+                .others(onEtag, onDate1, onDate2)
+
+onOthers.check(function (isGood) {
+  // isGood is true if you should keep your cached data
+})
+```
+
 Test
 ----
 
