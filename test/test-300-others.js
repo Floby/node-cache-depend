@@ -69,18 +69,45 @@ describe('the Others watcher', function () {
   });
 
   describe('.check()', function () {
-    it('should relay the check call to its children', function (done) {
+
+    it('should return true if all children checks come positive', function (done) {
       var manuals = [1,2,3].map(manual)
+      var depends = others(manuals);
+      depends.check(function (good) {
+        expect(good).to.equal(true);
+        done();
+      })
+    });
+
+    it('should call its callback as soon as one check comes false', function (done) {
+      var manuals = [1,2,3].map(manual)
+      var called = false
       manuals.forEach(function (m) {
-        m.check = sinon.spy(function (cb) { cb(true) });
+        m.check = sinon.spy()
       });
       var depends = others(manuals);
       depends.check(function (isGood) {
-        manuals.forEach(function (m) {
-          expect(m.check.called).to.be.true;
-        })
-        done();
+        expect(called).to.equal(false, 'main callback called several times');
+        called = true;
+        expect(isGood).to.equal(false, 'isGood should be false');
+        setTimeout(function (){
+          manuals[1].check.callArgWith(0, true);
+          done();
+        }, 1);
       });
+
+      setTimeout(function () {
+        try {
+          manuals.forEach(function (m) {
+            expect(m.check.called).to.equal(true, 'check should have been called');
+          });
+          manuals[2].check.callArgWith(0, true);
+          expect(called).to.equal(false, 'main callback should not get called');
+          manuals[0].check.callArgWith(0, false);
+        } catch(e) {
+          done(e)
+        }
+      }, 0)
     });
   });
 })
