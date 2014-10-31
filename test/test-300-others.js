@@ -141,6 +141,18 @@ describe('the Others watcher', function () {
       manual2.invalidate('888');
       done();
     });
+
+    it('becomes invalid if the added watcher is already invalid', function (done) {
+      var depends = others();
+      var m = manual();
+      m.invalidate('AAA');
+      depends.on('change', function(info) {
+        expect(depends.invalid).to.be.true;
+        done();
+      });
+
+      depends.add(m);
+    })
   })
 })
 
