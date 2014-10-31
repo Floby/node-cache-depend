@@ -127,6 +127,20 @@ describe('the Others watcher', function () {
       depends.add(newManual);
       newManual.invalidate('888');
     });
+
+    it('discards it if it is already invalid', function (done) {
+      var manual1 = manual();
+      var depends = others(manual1);
+      manual1.invalidate('1');
+
+      var manual2 = manual();
+      depends.add(manual2);
+      depends.once('change', function () {
+        throw new Error('should not be called');
+      })
+      manual2.invalidate('888');
+      done();
+    });
   })
 })
 
