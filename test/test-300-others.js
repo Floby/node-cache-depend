@@ -110,6 +110,24 @@ describe('the Others watcher', function () {
       }, 0)
     });
   });
+
+  describe('.add()', function () {
+    it('adds the dependency to its list', function (done) {
+      var manuals = [1,2,3].map(manual);
+      var depends = others(manuals);
+      depends.once('change', function(info) {
+        expect(info).to.be.an('object');
+        expect(info).to.have.property('changeId');
+        expect(info.changeId).to.equal('888');
+        expect(info.changed).to.equal(newManual);
+        done();
+      });
+
+      var newManual = manual();
+      depends.add(newManual);
+      newManual.invalidate('888');
+    });
+  })
 })
 
 
